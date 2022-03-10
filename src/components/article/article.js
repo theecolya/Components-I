@@ -87,6 +87,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'I am shook af',
+    date: 'Mar 10th, 2022',
+    firstParagraph: `I am so impressed with myself`,
+
+    secondParagraph: `I wrote the article function in just an hour`,
+
+    thirdParagraph: `*pats self on back*`
   }
 ];
 
@@ -103,7 +112,38 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
-
+*/
+const articleMaker = function(article) {
+  const div = document.createElement('div');
+  div.classList.add('article');
+  const h2 = document.createElement('h2');
+  h2.textContent = article.title;
+  div.appendChild(h2);
+  const p0 = document.createElement('p');
+  p0.classList.add('date');
+  p0.textContent = article.date;
+  div.appendChild(p0);
+  const p1 = document.createElement('p');
+  p1.textContent = article.firstParagraph;
+  div.appendChild(p1);
+  const p2 = document.createElement('p');
+  p2.textContent = article.secondParagraph;
+  div.appendChild(p2);
+  const p3 = document.createElement('p');
+  p3.textContent = article.thirdParagraph;
+  div.appendChild(p3);
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  span.textContent = '+'
+  span.addEventListener('click', function() {
+    div.classList.toggle('article-open')
+  });
+  div.appendChild(span);
+  return div
+}
+const articleContainer = document.querySelector('div.articles')
+data.forEach(obj => articleContainer.appendChild(articleMaker(obj)))
+/*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
